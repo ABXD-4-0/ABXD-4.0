@@ -24,8 +24,10 @@ $crumbs->add(new PipeMenuLinkEntry(__("Member list"), "memberlist"));
 $crumbs->add(new PipeMenuHtmlEntry(userLink($user)));
 $crumbs->add(new PipeMenuTextEntry(__("Comments")));
 makeBreadcrumbs($crumbs);
+
 $canDeleteComments = ($id == $loguserid || $loguser['powerlevel'] > 2) && IsAllowed("deleteComments") && $loguser['powerlevel'] >= 0;
-$canComment = $loguser['powerlevel'] >= 0;
+$canComment = $loguser['powerlevel'] >= 0 && $loguser['regdate'] > 300;
+
 if($loguserid && ($_GET['token'] == $loguser['token'] || $_POST['token'] == $loguser['token']))
 {
 	if($canDeleteComments && $_GET['action'] == "delete")
@@ -129,7 +131,7 @@ if($loguserid )
 //	if($lastCID == $loguserid)
 //		$commentField = __("You already have the last word.");
 	if(!IsAllowed("makeComments") || !$canComment)
-		$commentField = __("You are not allowed to post usercomments.");
+		$commentField = __("&nbsp;");
 }
 print "
 				<table class=\"outline margin\">

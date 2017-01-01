@@ -2,6 +2,7 @@
 //  AcmlmBoard XD - Login page
 //  Access: guests
 
+    
 function validateConvertPassword($pass, $hash, $salt, $type)
 {
 	if($type == "IPB")
