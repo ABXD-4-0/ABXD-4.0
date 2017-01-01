@@ -15,6 +15,9 @@ AssertForbidden("sendPM");
 
 if(!$loguserid) //Not logged in?
 	Kill(__("You must be logged in to send private messages."));
+	
+if($loguser['regdate'] < 60 && $loguser['powerlevel'] == 0)
+    Kill(__("For security reasons, users registered in less than one minute may not post send private messages"));;
 
 $pid = (int)$_GET['pid'];
 if($pid)

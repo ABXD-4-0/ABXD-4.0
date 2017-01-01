@@ -18,7 +18,10 @@ if(!isset($_GET['id']))
 $fid = (int)$_GET['id'];
 
 if($loguser['powerlevel'] < 0)
-	Kill(__("You're banned."));
+	Kill(__("You may not post."));
+	
+if($loguser['regdate'] < 60 && $loguser['powerlevel'] == 0)
+    Kill(__("For security reasons, users registered in less than one minute may not post new threads"));
 
 $rFora = Query("select * from {forums} where id={0}", $fid);
 if(NumRows($rFora))

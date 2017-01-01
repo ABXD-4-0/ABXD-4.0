@@ -4,10 +4,10 @@
 $crumbs = new PipeMenu();
 $crumbs->add(new PipeMenuLinkEntry(__("Register"), "register"));
 makeBreadcrumbs($crumbs);
-$haveSecurimage = is_file("securimage/securimage.php");
-if($haveSecurimage)
-	session_start();
 $title = __("Register");
+
+if($loguserid)
+    Kill(__("You already have an account"));
 
 #StopForumSpam protection goes here
 
@@ -46,13 +46,8 @@ if(isset($_POST['name']))
 		$err = __("You already have an account.");
 	else if ($_POST['pass'] !== $_POST['pass2'])
 		$err = __("The passwords you entered don't match.");
-	else if($haveSecurimage)
-	{
-		include("securimage/securimage.php");
-		$securimage = new Securimage();
-		if($securimage->check($_POST['captcha_code']) == false)
-			$err = __("You got the CAPTCHA wrong.");
-	}
+    else if(strlen($_POST['pass']) < 8)
+		$err = __("Your password must be at least eight characters long.");
 	/*if(!$err) #Enable this only if you're using the StopForumSpam addition
 	{
 		$reasons = array();
@@ -103,7 +98,6 @@ $sex = 2;
 if(isset($_POST["sex"]))
 	$sex = validateSex($_POST["sex"]);
 echo "
-<script src=\"".resourceLink('js/register.js')."\"></script>
 <script src=\"".resourceLink('js/zxcvbn.js')."\"></script>
 <form action=\"".actionLink("register")."\" method=\"post\">
 	<table class=\"outline margin width50\">
@@ -144,20 +138,6 @@ echo "
 				".MakeOptions("sex",$sex,$sexes)."
 			</td>
 		</tr>";
-if($haveSecurimage)
-{
-	echo "
-		<tr>
-			<td class=\"cell2\">
-				".__("Security")."
-			</td>
-			<td class=\"cell1\">
-				<img width=\"200\" height=\"80\" id=\"captcha\" src=\"".actionLink("captcha", shake())."\" alt=\"CAPTCHA Image\" />
-				<button onclick=\"document.getElementById('captcha').src = '".actionLink("captcha", shake())."?' + Math.random(); return false;\">".__("New")."</button><br />
-				<input type=\"text\" name=\"captcha_code\" size=\"10\" maxlength=\"6\" class=\"required\" />
-			</td>
-		</tr>";
-}
 echo "
 		<tr class=\"cell2\">
 			<td></td>

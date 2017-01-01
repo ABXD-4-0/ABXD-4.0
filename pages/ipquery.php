@@ -8,7 +8,7 @@ if(!filter_var($ip, FILTER_VALIDATE_IP))
 	Kill("Invalid IP");
 
 $links = new PipeMenu();
-$links -> add(new PipeMenuAnyLinkEntry(__("WHOIS query"), "http://dnsquery.org/ipwhois/$ip target="_blank""));
+$links -> add(new PipeMenuAnyLinkEntry(__("WHOIS query"), "http://dnsquery.org/ipwhois/$ip"));
 $links -> add(new PipeMenuHtmlEntry("<a onclick=\"if(confirm('Are you sure you want to IP-ban $ip?')) {document.getElementById('banform').submit();} return false;\" href=\"#\">IP Ban</a>"));
 makeLinks($links);
 
