@@ -122,6 +122,7 @@ $settings = array(
 		"type" => "texthtml",
 		"default" => "Welcome to your new ABXD Board!<br>The first person to register gets root/owner access. For this reason, avoid showing people the URL of your site before it is set up.<br>Then, when you have registered, you can edit the board settings, forum list, this very message, and other stuff from the admin panel.<br>Enjoy ABXD!",
 		"name" => "PoRA text",
+		"help" => "Since this box is dumb, BBcode is not supported.",
 	),
 
 	"profilePreviewText" => array (

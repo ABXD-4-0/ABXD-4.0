@@ -70,6 +70,7 @@ if ($_GET['listing'])
 		case "id": $order = "id ".(isset($dir) ? $dir : "asc"); break;
 		case "name": $order = "name ".(isset($dir) ? $dir : "asc"); break;
 		case "reg": $order = "regdate ".(isset($dir) ? $dir : "desc"); break;
+		case "karma": $order = "karma ".(isset($dir) ? $dir : "desc"); break; //This line is needed, even if ugh -.-
 		default: $order="posts ".(isset($dir) ? $dir : "desc");
 	}
 
