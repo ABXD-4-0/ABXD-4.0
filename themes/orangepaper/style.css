@@ -142,9 +142,7 @@ div#tabs button.selected {
 	box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.5);
 }
 
-#drawer a:active {
-
-}
+#drawer a:active { }
 
 #mobile-headerBar {
 	background:  #ffb366, url(paper-texture.png);
