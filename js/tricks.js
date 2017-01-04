@@ -1,7 +1,5 @@
 "use strict";
-
 //LINKS AND STUFF
-
 //The value of this is set by PHP
 var boardroot = "";
 
@@ -10,9 +8,7 @@ function resourceLink(url)
 	return boardroot + url;
 }
 
-
 //AJAX STUFF
-
 function ajax(page, params, callback)
 {
 	params["page"] = page;
@@ -24,20 +20,13 @@ function ajaxPost(page, params, callback)
 	$.post(boardroot+"?page="+page, params, callback);
 }
 
-
 //AJAX REFRESHERS
-
-//Value of this is set by PHP too.
 //var onlineFID = 0;
 var refreshUrl = "";
 var onlineFID = 0;
 
 function startAjaxRefresh()
 {
-	//onlineFID = fid;
-	//setTimeout("getOnlineUsers()", 10000);
-	//var onlineUsersBar = $('.header0').get(1);
-	//onlineUsersBar.id="onlineUsersBar";
 	var tmrid = window.setInterval(ajaxRefresh, 10000);
 
 	$(window).blur(function() {
@@ -72,9 +61,7 @@ function ajaxRefresh()
 		});
 }
 
-
 //SPOILER BUTTONS
-
 function toggleSpoiler()
 {
 	var button = this.parentNode.children[0];
@@ -137,7 +124,6 @@ function expandPostHelp()
 }
 
 //EDIT PROFILE TABS
-
 function showEditProfilePart(newId)
 {
 	var tables = document.getElementsByClassName('eptable');
@@ -153,10 +139,8 @@ function showEditProfilePart(newId)
 }
 
 //POST CONTROLS 
-
 var textEditor;
 function hookUpControls() {
-	//Now functional!
 	textEditor = document.getElementById("text");
 	textEditor.addEventListener("keypress", HandleKey, true);
 	ConstructToolbar();
@@ -176,16 +160,12 @@ function ConstructToolbar()
 		{ separator: true },
 		{ icon: "superscript", title: "Superscript", insert: "sup", html: true },
 		{ icon: "subscript", title: "Subscript", insert: "sub", html: true },
-		//{ icon: "A", title: "Big", insert: "big", html: true },
-		//{ icon: "a", title: "Small", insert: "small", html: true },
 		{ separator: true },
 		{ icon: "link", title: "Link", insert: "url" },
 		{ icon: "picture", title: "Image", insert: "img" },
 		{ separator: true },
 		{ icon: "quote-left", title: "Quote", insert: "quote" },
 		{ icon: "ellipsis-horizontal", title: "Spoiler", style: "opacity: 0.25", insert: "spoiler" },
-		//{ icon: "abc", title: "Insert code block", style: "font-family: monospace", insert: "code" },
-
 	];
 
 	for(var i = 0; i < buttons.length; i++) {
@@ -258,15 +238,12 @@ function insert(stuff, html) {
 
 
 
-/* Quote support
-   -------------
-   Thanks to Mega-Mario for the idea
- */
+//Quote support, thanks to StapleButter for the idea
 function insertQuote(pid)
 {
 	ajax("getquote", {id: pid}, function(data)
 	{
-		var editor = $("#text")[0]; //we want the HTMLTextElement kthx
+		var editor = $("#text")[0];
 		editor.focus();
 		if (document.selection)
 			document.selection.createRange().text += data;
@@ -288,13 +265,7 @@ function insertChanLink(pid)
 	editor.scrollTop = editor.scrollHeight;
 }
 
-
-
-
-/* Smiley tricks
-   -------------
-   Inspired by Mega-Mario's quote system.
- */
+// Smiley tricks. Inspired by Mega-Mario's quote system.
 function insertSmiley(smileyCode)
 {
 	var editor = document.getElementById("text");
@@ -310,9 +281,7 @@ function insertSmiley(smileyCode)
 	editor.scrollTop = editor.scrollHeight;
 }
 
-
-
-// Live theme changer by Mega-Mario
+// Live theme changer by Mega-Mario | TODO: the same for post layouts
 function ChangeTheme(newtheme)
 {
 	ajax("getthemefiles", {id: newtheme}, function(data)
@@ -322,8 +291,6 @@ function ChangeTheme(newtheme)
 		$("#theme_banner")[0].src = stuff.logo;
 	});
 }
-
-
 
 //Search page pager
 function ChangePage(newpage)
@@ -345,9 +312,7 @@ function ChangePage(newpage)
                 pages[i].style.display = '';
 }
 
-
 //Stuff...?
-
 function hideTricks(pid)
 {
 	$("#dyna_"+pid).hide(200);
@@ -396,7 +361,6 @@ function checkAll()
 	for(var i = 0; i < checks.length; i++)
 		checks[i].checked = checked;
 }
-
 
 function hookUploadCheck(id, type, size)
 {
@@ -513,7 +477,6 @@ function loadEmail(id) {
 }
 
 //MOBILE LAYOUT
-
 function enableMobileLayout(val)
 {
 	setCookie("forcelayout", val, 20*365*24*60*60, "/");
