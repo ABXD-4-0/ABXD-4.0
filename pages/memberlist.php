@@ -11,9 +11,9 @@ AssertForbidden("viewMembers");
 
 function PageLinks2($url, $epp, $from, $total)
 {
-	if ($total < 1) return '';
+    if ($total < 1) return '';
 
-	$numPages = ceil($total / $epp);
+    $numPages = ceil($total / $epp);
 	$page = ceil($from / $epp) + 1;
 
 	$first = ($from) ? "<a class=\"pagelink\" href=\"".$url."0)\">&#x00AB;</a> " : "";
@@ -55,7 +55,7 @@ if ($_GET['listing'])
 	}
 
 	$sort = $_GET['sort'];
-	if(!in_array($sort, array('', 'id', 'name',  'reg')))
+	if(!in_array($sort, array('', 'id', 'name', 'reg')))
 		unset($sort);
 
 	$sex = $_GET['sex'];
@@ -70,7 +70,6 @@ if ($_GET['listing'])
 		case "id": $order = "id ".(isset($dir) ? $dir : "asc"); break;
 		case "name": $order = "name ".(isset($dir) ? $dir : "asc"); break;
 		case "reg": $order = "regdate ".(isset($dir) ? $dir : "desc"); break;
-		case "karma": $order = "karma ".(isset($dir) ? $dir : "desc"); break; //This line is needed, even if ugh -.-
 		default: $order="posts ".(isset($dir) ? $dir : "desc");
 	}
 
@@ -158,10 +157,9 @@ if ($_GET['listing'])
 				<td>{5}</td>
 				<td>{6}</td>
 				<td>{7}</td>
-				<td>{8}</td>
 			</tr>
 	",	$cellClass, $user['id'], $userPic, UserLink($user), $user['posts'],
-		$user['average'], 
+		$user['average'],
 		($user['birthday'] ? cdate("M jS", $user['birthday']) : "&nbsp;"),
 		cdate("M jS Y", $user['regdate'])
 		);
@@ -184,7 +182,6 @@ if ($_GET['listing'])
 				<th>".__("Name")."</th>
 				<th style=\"width: 50px; \">".__("Posts")."</th>
 				<th style=\"width: 50px; \">".__("Average")."</th>
-				<th style=\"width: 50px; \">".__("Karma")."</th>
 				<th style=\"width: 80px; \">".__("Birthday")."</th>
 				<th style=\"width: 130px; \">".__("Registered on")."</th>
 			</tr>
