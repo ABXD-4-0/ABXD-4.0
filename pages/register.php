@@ -9,6 +9,9 @@ $title = __("Register");
 if($loguserid)
     Kill(__("You already have an account"));
 
+if(Settings::get("registration"))
+    Kill(__("Account registrations are disabled"));
+
 #StopForumSpam protection goes here
 
 function validateSex($sex)
@@ -40,6 +43,8 @@ if(isset($_POST['name']))
 		$err = __("This user name is already taken. Please choose another.");
 	else if($name == "" || $cname == "")
 		$err = __("The user name must not be empty. Please choose one.");
+    else if (Settings::get("forcemail") && !$email)
+        $err = __("You must specify an e-mail address");
 	else if(strpos($name, ";") !== false)
 		$err = __("The user name cannot contain semicolons.");
 	elseif($ipKnown >= 3)
@@ -48,6 +53,9 @@ if(isset($_POST['name']))
 		$err = __("The passwords you entered don't match.");
     else if(strlen($_POST['pass']) < 8)
 		$err = __("Your password must be at least eight characters long.");
+    else if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+		$err = __("Please enter a valid e-mail address");
+    
 	/*if(!$err) #Enable this only if you're using the StopForumSpam addition
 	{
 		$reasons = array();
