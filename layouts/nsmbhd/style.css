@@ -33,6 +33,9 @@
 	float:right;
 	width:130px;
 	padding:6px;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 15px;
 }
 
 #main{
