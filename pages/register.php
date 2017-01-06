@@ -48,7 +48,7 @@ if(isset($_POST['name']))
 		$err = __("The passwords you entered don't match.");
     else if(strlen($_POST['pass']) < 8)
 		$err = __("Your password must be at least eight characters long.");
-	if(!$err)
+	/*if(!$err) #Enable this only if you're using the StopForumSpam addition
 	{
 		$reasons = array();
 		if(IsTorExitPoint()) {
@@ -63,8 +63,7 @@ if(isset($_POST['name']))
 			$bucket = "regfail"; include("lib/pluginloader.php");
 			$err = 'An unknown error occured, please try again.';
 		}
-	}
-
+	}*/
 	if($err)
 	{
 		Alert($err);
