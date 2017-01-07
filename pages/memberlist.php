@@ -161,7 +161,7 @@ if ($_GET['listing'])
 				<td>{8}</td>
 			</tr>
 	",	$cellClass, $user['id'], $userPic, UserLink($user), $user['posts'],
-		$user['average'], 
+		$user['average'],  $user['karma'],
 		($user['birthday'] ? cdate("M jS", $user['birthday']) : "&nbsp;"),
 		cdate("M jS Y", $user['regdate'])
 		);
@@ -225,6 +225,7 @@ if (!$isBot)
 			"" => __("Post count"),
 			"id" => __("ID"),
 			"name" => __("Name"),
+			"karma" => __("Karma"),
 			"reg" => __("Registration date")
 		))." &nbsp;
 		</label>
