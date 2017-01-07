@@ -64,7 +64,7 @@ $settings = array(
 	),
 	"defaultTheme" => array (
 		"type" => "theme",
-		"default" => "whitepaper",
+		"default" => "orangepaper",
 		"name" => "Default Board Theme",
 	),
 	"defaultLayout" => array (
