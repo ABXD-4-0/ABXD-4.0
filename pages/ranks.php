@@ -4,7 +4,7 @@ $title = __("Ranks");
 $crumbs = new PipeMenu();
 $crumbs->add(new PipeMenuLinkEntry(__("Ranks"), "ranks"));
 makeBreadcrumbs($crumbs);
-AssertForbidden("viewRanks");
+AssertForbidden("ranks");
 
 loadRanksets();
 if(count($ranksetData) == 0)

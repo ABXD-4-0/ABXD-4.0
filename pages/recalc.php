@@ -2,7 +2,7 @@
 //  AcmlmBoard XD - Report/content mismatch fixing utility
 //  Access: staff
 
-AssertForbidden("recalculate");
+AssertForbidden("recalc");
 
 if($loguser['powerlevel'] < 1)
 		Kill(__("Staff only, please."));

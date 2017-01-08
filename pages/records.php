@@ -4,7 +4,7 @@
 
 
 $title = __("Records");
-AssertForbidden("viewRecords");
+AssertForbidden("records");
 $crumbs = new PipeMenu();
 $crumbs->add(new PipeMenuLinkEntry(__("Records"), "records"));
 makeBreadcrumbs($crumbs);

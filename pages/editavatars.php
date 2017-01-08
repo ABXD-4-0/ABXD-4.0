@@ -6,7 +6,7 @@ $crumbs = new PipeMenu();
 $crumbs->add(new PipeMenuLinkEntry(__("Mood avatars"), "editavatars"));
 makeBreadcrumbs($crumbs);
 
-AssertForbidden("editMoods");
+AssertForbidden("editavatars");
 
 if(!$loguserid)
 	Kill(__("You must be logged in to edit your avatars."));

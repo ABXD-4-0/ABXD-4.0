@@ -2,8 +2,6 @@
 //  AcmlmBoard XD - Private message inbox/outbox viewer
 //  Access: users
 
-AssertForbidden("viewPM");
-
 $title = "Private messages";
 
 if(!$loguserid)

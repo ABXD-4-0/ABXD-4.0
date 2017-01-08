@@ -5,6 +5,8 @@
 
 $title = __("Edit forums");
 
+AssertForbidden("editfora");
+
 if ($loguser['powerlevel'] < 3) Kill(__("You're not allowed to access the forum editor."));
 
 $crumbs = new PipeMenu();

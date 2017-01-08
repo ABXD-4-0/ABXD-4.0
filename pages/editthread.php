@@ -4,7 +4,7 @@
 
 $title = __("Edit thread");
 
-AssertForbidden("editThread");
+AssertForbidden("editthread");
 
 if (isset($_REQUEST['action']) && $loguser['token'] != $_REQUEST['key'])
 		Kill(__("No."));

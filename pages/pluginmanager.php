@@ -2,7 +2,7 @@
 
 $title = "Plugin Manager";
 
-AssertForbidden("managePlugins");
+AssertForbidden("pluginmanager");
 
 if($loguser['powerlevel'] < 3)
 	Kill(__("You must be an administrator to manage plugins."));

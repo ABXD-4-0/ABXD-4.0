@@ -4,7 +4,7 @@
 
 $title = __("New thread");
 
-AssertForbidden("makeThread");
+AssertForbidden("newthread");
 
 if(!$loguserid) //Not logged in?
 	Kill(__("You must be logged in to post."));
@@ -19,9 +19,6 @@ $fid = (int)$_GET['id'];
 
 if($loguser['powerlevel'] < 0)
 	Kill(__("You may not post."));
-	
-if($loguser['regdate'] < 60 && $loguser['powerlevel'] == 0)
-    Kill(__("For security reasons, users registered in less than one minute may not post new threads"));
 
 $rFora = Query("select * from {forums} where id={0}", $fid);
 if(NumRows($rFora))

@@ -26,7 +26,7 @@ $crumbs->add(new PipeMenuTextEntry(__("Comments")));
 makeBreadcrumbs($crumbs);
 
 $canDeleteComments = ($id == $loguserid || $loguser['powerlevel'] > 2) && IsAllowed("deleteComments") && $loguser['powerlevel'] >= 0;
-$canComment = $loguser['powerlevel'] >= 0 && $loguser['regdate'] > 300;
+$canComment = $loguser['powerlevel'] >= 0;
 
 if($loguserid && ($_GET['token'] == $loguser['token'] || $_POST['token'] == $loguser['token']))
 {

@@ -2,8 +2,6 @@
 //  AcmlmBoard XD - Posts by user viewer
 //  Access: all
 
-AssertForbidden("listPosts");
-
 if(!isset($_GET['id']))
 	Kill(__("User ID unspecified."));
 

@@ -53,8 +53,6 @@ if(isset($_POST['name']))
 		$err = __("The passwords you entered don't match.");
     else if(strlen($_POST['pass']) < 8)
 		$err = __("Your password must be at least eight characters long.");
-    else if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-		$err = __("Please enter a valid e-mail address");
     
 	/*if(!$err) #Enable this only if you're using the StopForumSpam addition
 	{

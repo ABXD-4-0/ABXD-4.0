@@ -3,7 +3,7 @@
 //  Access: administrators
 
 
-AssertForbidden("viewAdminRoom");
+AssertForbidden("admin");
 
 if($loguser['powerlevel'] < 3)
 	Kill(__("You're not an administrator. There is nothing for you here."));

@@ -11,7 +11,7 @@ $crumbs->add(new PipeMenuLinkEntry(__("Private messages"), "private"));
 $crumbs->add(new PipeMenuLinkEntry(__("New PM"), "sendprivate"));
 makeBreadcrumbs($crumbs);
 
-AssertForbidden("sendPM");
+AssertForbidden("sendprivate");
 
 if(!$loguserid) //Not logged in?
 	Kill(__("You must be logged in to send private messages."));

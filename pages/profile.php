@@ -1,7 +1,6 @@
 <?php
 //  AcmlmBoard XD - User profile page
 //  Access: all
-AssertForbidden("viewProfile");
 if(isset($_POST['id']))
     $_GET['id'] = $_POST['id'];
 if(!isset($_GET['id']))
@@ -21,7 +20,6 @@ if($id == $loguserid)
 {
 	if(isset($_GET['block']))
 	{
-		AssertForbidden("blockLayouts");
 		$block = (int)$_GET['block'];
 		$rBlock = Query("select * from {blockedlayouts} where user={0} and blockee={1}", $id, $loguserid);
 		$isBlocked = NumRows($rBlock);

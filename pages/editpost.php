@@ -17,7 +17,7 @@ if(!isset($_GET['id']))
 	Kill(__("Post ID unspecified."));
 
 $pid = (int)$_GET['id'];
-AssertForbidden("editPost", $pid);
+AssertForbidden("editpost", $pid);
 
 $rPost = Query("
 	SELECT

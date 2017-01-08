@@ -13,8 +13,6 @@ if(isset($_POST['google']))
 	header("Location: http://www.google.com/search?q=".urlencode($_POST['google']." site:".$here));
 }
 
-AssertForbidden("search");
-
 echo "	<table>
 		<tr>
 			<td style=\"width: 70%; border: 0px none; vertical-align: top; padding-right: 1em; padding-bottom: 1em;\">";

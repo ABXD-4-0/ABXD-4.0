@@ -2,7 +2,7 @@
 //  AcmlmBoard XD - Smiley editing tool
 //  Access: administrators only
 
-AssertForbidden("editSmilies");
+AssertForbidden("editsmilies");
 
 if($loguser['powerlevel'] < 3)
 	Kill("You must be an administrator to edit the smiley table.");

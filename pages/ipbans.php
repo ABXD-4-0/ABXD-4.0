@@ -4,7 +4,7 @@
 
 $title = __("IP bans");
 
-AssertForbidden("editIPBans");
+AssertForbidden("ipbans");
 
 if($loguser['powerlevel'] < 3)
 	Kill(__("Only administrators get to manage IP bans."));

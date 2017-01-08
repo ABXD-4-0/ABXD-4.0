@@ -4,6 +4,8 @@
 if(!$loguserid)
 	Kill(__("You must be logged in to edit your profile."));
 
+AssertForbidden("editprofile");
+
 if ($loguser['powerlevel'] < 0)
 	Kill(__("You may not edit your profile."));
 
@@ -263,6 +265,12 @@ $account = array(
 			"globalblock" => array(
 				"caption" => __("Globally block layout"),
 				"type" => "checkbox",
+				            "forbiddens" => array(
+    			"caption" => __("[BETA] Deny user permissions"),
+				"type" => "text",
+                "lenght" => 1024,
+                "hint" => __("Insert here names of pages that you want the user do NOT see. Use this with caution"),
+    		),
 			),
 		),
 	),

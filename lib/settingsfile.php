@@ -108,11 +108,6 @@ $settings = array(
 		"default" => "1",
 		"name" => "Show extra info in post sidebar",
 	),
-    "forcemail" => array (
-	"type" => "boolean",
-	"default" => "0",
-	"name" => "Force e-mail on registration"
-	),
     "registration" => array (
         "type" => "boolean",
 	    "default" => "0",
