@@ -5,7 +5,6 @@
 
 $title = __("Member list");
 
-AssertForbidden("viewMembers");
 
 
 

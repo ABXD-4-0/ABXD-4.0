@@ -8,7 +8,6 @@ $crumbs = new PipeMenu();
 $crumbs->add(new PipeMenuLinkEntry(__("Online users"), "online"));
 makeBreadcrumbs($crumbs);
 
-AssertForbidden("online");
 
 // This can (and will) be turned into a permission.
 $showIPs = $loguser['powerlevel'] > 1;

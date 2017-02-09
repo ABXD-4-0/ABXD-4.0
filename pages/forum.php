@@ -15,7 +15,7 @@ if($loguserid && $_GET['action'] == "markasread")
 	redirectAction("board");
 }
 
-AssertForbidden("viewForum", $fid);
+//AssertForbidden("viewForum", $fid);
 
 $pl = $loguser['powerlevel'];
 if($pl < 0) $pl = 0;

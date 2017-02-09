@@ -15,7 +15,7 @@ if(isset($_GET['id']))
 else
 	Kill(__("Thread ID unspecified."));
 
-AssertForbidden("viewThread", $tid);
+//AssertForbidden("viewThread", $tid);
 
 $rThread = Query("select * from {threads} where id={0}", $tid);
 
