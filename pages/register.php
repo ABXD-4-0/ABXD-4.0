@@ -103,6 +103,7 @@ if(isset($_POST["email"]))
 $sex = 2;
 if(isset($_POST["sex"]))
 	$sex = validateSex($_POST["sex"]);
+//TODO: Kill dumb echo -.-
 echo "
 <script src=\"".resourceLink('js/zxcvbn.js')."\"></script>
 <form action=\"".actionLink("register")."\" method=\"post\">
@@ -158,8 +159,8 @@ echo "
 		</tr>
 	</table>
 </form>";
-function MakeOptions($fieldName, $checkedIndex, $choicesList)
-{
+
+function MakeOptions($fieldName, $checkedIndex, $choicesList) {
 	$checks[$checkedIndex] = " checked=\"checked\"";
 	foreach($choicesList as $key=>$val)
 		$result .= format("
