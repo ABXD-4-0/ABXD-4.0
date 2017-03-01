@@ -94,8 +94,16 @@ function DoPrivateMessageBar()
 			UserLink($user), formatdate($last['date']));
 		}
 
-		if($loguser['newcomments'])
-		{
+		if($loguser['newcomments']) {
+			if ($mobileLayout) {
+			
+			$content .= format(
+"
+		".__("You {0} have new comments in your {1}profile{2}."),
+			$content != "" ? "also" : "",
+			"<a href=\"".actionLink("usercomments", $loguserid)."\">",
+			"</a>");
+			} else {
 			$content .= format(
 "
 		".__("You {0} have new comments in your {1}profile{2}."),
