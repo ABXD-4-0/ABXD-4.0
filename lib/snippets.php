@@ -93,7 +93,7 @@ function DoPrivateMessageBar()
 			"<a href=\"".actionLink("showprivate", $last['id'])."\">",
 			UserLink($user), formatdate($last['date']));
 		}
-
+		//note, the mobile stuff isn't working, but at least id doesn't break
 		if($loguser['newcomments']) {
 			if ($mobileLayout) {
 			
@@ -120,6 +120,7 @@ function DoPrivateMessageBar()
 	</div>
 ", $pmNotice, $content);
 	}
+    }
 }
 
 function DoSmileyBar($taname = "text")
