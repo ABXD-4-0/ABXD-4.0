@@ -145,7 +145,7 @@ function makePostText($post)
 
 		if($poster['signature'])
 			if(!$poster['signsep'])
-				$separator = "<br />_________________________<br />";
+				$separator = "<hr />";
 			else
 				$separator = "<br />";
 	}
