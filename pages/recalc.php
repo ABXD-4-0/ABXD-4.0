@@ -57,10 +57,10 @@ $aff = 0;
 $users = query("select id from {users}");
 while($user = fetch($users))
 {
-	RecalculateKarma($user["id"]);
+	//RecalculateKarma($user["id"]);
 	$aff += affectedRows();
 }
-reportFix(__("Counting user's karma&hellip;"), $aff);
+//reportFix(__("Counting user's karma&hellip;"), $aff);
 
 startFix();
 query("UPDATE {threads} t SET replies =
