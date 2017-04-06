@@ -236,8 +236,8 @@ if(Settings::get("showPoRA"))
 	$layout_pora = '
 		<div class="PoRT nom">
 			<table class="message outline">
-				<tr class="header0"><th>'.Settings::get("PoRATitle").'</th></tr>
-				<tr class="cell0"><td>'.Settings::get("PoRAText").'</td></tr>
+				<tr class="header0"><th>'.CleanUpPost(Settings::get("PoRATitle"), "", true).'</th></tr>
+				<tr class="cell0"><td>'.CleanUpPost(Settings::get("PoRAText"), "", true).'</td></tr>
 			</table>
 		</div>';
 }
