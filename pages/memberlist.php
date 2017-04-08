@@ -70,7 +70,6 @@ if ($_GET['listing'])
 		case "id": $order = "id ".(isset($dir) ? $dir : "asc"); break;
 		case "name": $order = "name ".(isset($dir) ? $dir : "asc"); break;
 		case "reg": $order = "regdate ".(isset($dir) ? $dir : "desc"); break;
-		case "karma": $order = "karma ".(isset($dir) ? $dir : "desc"); break;
 		default: $order="posts ".(isset($dir) ? $dir : "desc");
 	}
 
@@ -161,7 +160,7 @@ if ($_GET['listing'])
 				<td>{8}</td>
 			</tr>
 	",	$cellClass, $user['id'], $userPic, UserLink($user), $user['posts'],
-		$user['average'],  $user['karma'],
+		$user['average'],  
 		($user['birthday'] ? cdate("M jS", $user['birthday']) : "&nbsp;"),
 		cdate("M jS Y", $user['regdate'])
 		);
@@ -225,7 +224,6 @@ if (!$isBot)
 			"" => __("Post count"),
 			"id" => __("ID"),
 			"name" => __("Name"),
-			"karma" => __("Karma"),
 			"reg" => __("Registration date")
 		))." &nbsp;
 		</label>
