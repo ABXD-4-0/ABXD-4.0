@@ -21,10 +21,21 @@ function CanMod($userid, $fid)
 	return false;
 }
 
+/* A step more for a flexible permissions system
+WARNING: USE THIS BRANCH ONLY FOR TESTING PURPOSE, YOU MAY ACCIDENTALLY GIVE BANNED USERS THE BANHAMMER OR SOMETHING
+todo: make it on the database and allow plugins to use their garbage here*/
 
+if ($loguser['powerlevel'] < 0)
+    $loguser['forbiddens'] = "addranks deletecomments editcats editfora ipbans editmods editavatars editpora editpost editprofile editsettings editsmilies editthread edituser haveCookie usercomments newreply newthread optimize purgeRevs recalc snooping upload admin avatars lastknownbrowsers makeReply";
+else if ($loguser['powerlevel'] >= 0 && $loguser['powerlevel'] < 3 && $loguserid)
+    $loguser['forbiddens'] = "addranks editcats editfora ipbans editmods editpora editpost editsettings editsmilies editthread edituser optimize purgeRevs recalc snooping admin lastknownbrowsers";
+else if ($loguser['powerlevel'] >= 3)
+    $loguser['forbiddens'] = " ";
+    
+//$loguser['forbiddens'] = Query("SELECT forbiddens FROM gperms WHERE id = {0}", $loguser['id']); //wonderful query but this needs to return a string -.-
 
-
-
+else if (!$loguserid)
+    $loguser['forbiddens'] = "addranks deletecomments editcats editfora ipbans editmods editavatars editpora editpost editprofile editsettings editsmilies editthread edituser haveCookie usercomments newreply newthread optimize purgeRevs recalc snooping upload admin avatars lastknownbrowsers makeReply";
 
 function AssertForbidden($to, $specifically = 0)
 {
@@ -43,8 +54,8 @@ function AssertForbidden($to, $specifically = 0)
 
 	if($caught)
 	{
-		$not = __("You are not allowed to {0}.");
-		$messages = array
+		$not = __("You are not allowed to perform this action.");
+		/*$messages = array //i don't want to use specific messages, so i'm keeping this commented because it would actually be useful.
 		(
 			"addranks" => __("add new ranks"),
 			"deletecomments" => __("delete usercomments"),
@@ -85,11 +96,11 @@ function AssertForbidden($to, $specifically = 0)
 			"viewThread" => __("read this thread"),
 			"makeReply" => __("reply in this thread"),
 			"edituser" => __("edit this user"),
-		);
+		);*/
 		$bucket = "forbiddens"; include("./lib/pluginloader.php");
 		if($caught == 2 && array_key_exists($to, $messages2))
-			Kill(format($not, $messages2[$to]), __("Permission denied"));
-		Kill(format($not, $messages[$to]), __("Permission denied"));
+			Kill(format($not), __("Permission denied"));
+		Kill(format($not), __("Permission denied"));
 	}
 }
 
@@ -108,44 +119,3 @@ function IsAllowed($to, $specifically = 0)
 	}
 	return TRUE;
 }
-
-/*
-//Improved permissions system ~Nina
-$groups = array();
-$rGroups = query("SELECT * FROM {usergroups}");
-while ($group = fetch($rGroups))
-{
-	$groups[] = $group;
-	$groups[$grup['id']]['permissions'] = unserialize($group['permissions']);
-}
-
-//Do nothing for guests.
-if (isset($loguserid) && isset($loguser['group']))
-{
-	$rPermissions = query("SELECT * FROM {userpermissions} WHERE uid={0}", $loguserid);
-	$permissions = fetch($rPermissions);
-	$permissions['permissions'] = unserialize($permissions['permissions']);
-	if (is_array($groups[$loguser['group']]['permissions']))
-		$loguser['permissions'] = array_merge($groups[$loguser['group']]['permissions'], $permissions); //$permissions overrides the group permissions here.
-	if ($loguser['powerlevel'] == 4) $loguser['group'] == "root"; //Just in case.
-}
-
-//Returns false for guests no matter what. Returns if the user is allowed to do something otherwise.
-//Additionally always returns true if the user's powerlevel is root.
-function checkAllowed($p)
-{
-	global $loguser, $loguserid;
-	if (!$loguserid) return false;
-	elseif ($loguser['group'] == "root" || $loguser['powerlevel'] == 4) return true;
-	elseif (strpos('.', $p))
-	{
-		$nodes = explode(".", $p);
-		$r = $loguser['permissions'];
-		foreach ($nodes as $n)
-			$r = $r[$node];
-		return $r;
-	}
-	else return $loguser['permissions'][$p];
-}
-
-*/

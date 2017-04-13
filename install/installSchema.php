@@ -108,6 +108,15 @@ $tables = array
 		),
 		"special" => $keyID.", key `ip` (`ip`), key `bot` (`bot`)"
 	),
+	"gperms" => array
+    (
+        "fields" => array
+		(
+			"id" => $AI,
+			"forbiddens" => $var1024,
+		),
+        "special" => $keyID
+	),
 	"ignoredforums" => array
 	(
 		"fields" => array
