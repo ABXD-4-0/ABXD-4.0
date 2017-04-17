@@ -6,8 +6,8 @@ if(!$loguserid)
 
 AssertForbidden("editprofile");
 
-if ($loguser['powerlevel'] < 0)
-	Kill(__("You may not edit your profile."));
+/*if ($loguser['powerlevel'] < 0)
+	Kill(__("You may not edit your profile."));*/
 
 if (isset($_POST['action']) && $loguser['token'] != $_POST['key'])
 	Kill(__("No."));
@@ -129,6 +129,10 @@ $general = array(
 				"min" => 20,
 				"max" => 200,
 			),
+			"timezone" => array(
+    			"caption" => __("Timezone offset"),
+				"type" => "timezone",
+			),
 		),
 	),
 	"options" => array(
@@ -177,10 +181,6 @@ $personal = array(
 			"bio" => array(
 				"caption" => __("Bio"),
 				"type" => "textarea",
-			),
-			"timezone" => array(
-				"caption" => __("Timezone offset"),
-				"type" => "timezone",
 			),
 		),
 	),
@@ -316,6 +316,13 @@ if(!$editUserMode)
 if($loguser['powerlevel'] > 0)
 	$general['avatar']['items']['picture']['hint'] = __("As a staff member, you can upload pictures of any reasonable size.");
 
+if($loguser['powerlevel'] < 0) {
+    unset($layout);
+    unset($general['appearance']);
+    unset($general['avatar']);
+    unset($personal);
+}
+
 if($loguser['powerlevel'] == 4 && isset($account['admin']['items']['powerlevel']))
 {
 	if($user['powerlevel'] == 4)
@@ -355,6 +362,11 @@ $tabs = array(
 		"width" => "80%",
 	),
 );
+
+if($loguser['powerlevel'] < 0) {
+    unset($tabs['personal']);
+    unset($tabs['postlayout']);
+}
 
 /*
 if (isset($_POST['theme']) && $user['id'] == $loguserid)
