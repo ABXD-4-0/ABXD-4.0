@@ -87,8 +87,11 @@ function IPMatches($ip, $mask) {
 
 $ipban = isIPBanned($_SERVER['REMOTE_ADDR']);
 
-if($ipban)
-	$_GET["page"] = "ipbanned";
+$ajaxpages = ['deletepost', 'getemail', 'getonlineusers', 'getpost', 'getquote', 'getrevision', 'getrevisionlist', 'getthemefiles', 'getviewcount'];
+
+
+if($ipban && !str_replace($_GET['page'], $ajaxpages, $_GET['page']))
+	$_GET['page'] = 'ipbanned';
 
 if(FetchResult("select count(*) from {proxybans} where instr({0}, ip)=1", $_SERVER['REMOTE_ADDR']))
 	die("No.");
