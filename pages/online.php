@@ -152,6 +152,8 @@ function FilterURL($url)
 	$url = str_replace('_', ' ', urldecode($url));
 	$url = htmlspecialchars($url);
 	$url = preg_replace("@&?(key|token)=[0-9a-f]{40,64}@i", '', $url);
+	if(stripos($url, 'ipquery'))
+	    $url = strstr($url, '&amp;id=', true);
 	return $url;
 }
 
