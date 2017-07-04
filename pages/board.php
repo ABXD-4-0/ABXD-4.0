@@ -54,7 +54,49 @@ if(!$mobileLayout)
 	",	$stats, $last);
 }
 
+function announcement() {
+    global $loguserid;
+	
+	$anncforum = Settings::get('announcementsForum');
+	if ($anncforum > 0) {
+		$annc = Fetch(Query('SELECT * FROM {threads} where forum={0} ORDER BY date DESC LIMIT 1 ', $anncforum));
+								
+		if ($annc) {
+			
+			//this is incredibly stupid but required, ugh
+			$poster = Fetch(Query('SELECT * FROM {users} where id='.$annc['user']));
+			
+			$annc['new'] = '';
+			if ((!$loguserid && $annc['anncdate'] > (time()-900)) ||
+				($loguserid && $annc['anncdate'] > $annc['readdate']))
+				$annc['new'] = "<div class=\"statusIcon new\"></div>";
+			
+			$annc['poll'] = ($annc['poll'] ? "<img src=\"".resourceLink('img/poll.png')."\" alt=\"Poll\"/> " : '');
+			$posterlink = UserLink($poster);
+			$annc['link'] = MakeThreadLink($annc);
+			$annc['date'] = formatdate($annc['anncdate']);
+		}
+    ?>
+    <table class="outline margin anncbar">
+    	<tr class="header1">
+			<th colspan="2">
+				Announcement
+			</th>
+		</tr>
+		<tr class="cell1">
+			<td class="cell2 newMarker">
+				<?php echo $annc['new']; ?>
+			</td>
+			<td>
+				<?php echo $annc['poll'], $annc['link'], " &mdash; Posted by ", $posterlink, " on ", $annc['date']; ?>
+			</td>
+		</tr>
+</table> <?php
+	}
+}
+
 printRefreshCode();
+announcement();
 makeForumListing(0);
 
 ?>
