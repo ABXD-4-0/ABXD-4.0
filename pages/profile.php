@@ -129,16 +129,16 @@ if($homepage)
 $profileParts[__("Contact information")] = $foo;
 $foo = array();
 $infofile = "themes/".$user['theme']."/themeinfo.txt";
-$themeinfo = file_get_contents($infofile);
-$themeinfo = explode("\n", $themeinfo, 2);
 if(file_exists($infofile))
 {
-	$themename = trim($themeinfo[0]);
-	$themeauthor = trim($themeinfo[1]);
+	$themeinfo = file_get_contents($infofile);
+	$themeinfo = explode("\n", $themeinfo, 2);
+	$themename = htmlspecialchars(trim($themeinfo[0]));
+	$themeauthor = htmlspecialchars(trim($themeinfo[1]));
 }
 else
 {
-	$themename = $user['theme'];
+	$themename = htmlspecialchars($user['theme']);
 	$themeauthor = "";
 }
 $foo[__("Theme")] = $themename;
