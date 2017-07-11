@@ -94,6 +94,20 @@ $tables = array
 		),
 		"special" => $keyID.", key `catid` (`catid`)"
 	),
+	"groups" => array
+    (
+		"fields" => array
+		(
+			"id" => $AI,
+			"name" => $var128,
+			"color_male" => "varchar(16)".$notNull,
+			"color_female" => "varchar(16)".$notNull,
+			"color_unspec" => "varchar(16)".$notNull,
+			"default" => $smallerInt,
+			"permissions" => $text
+		),
+		"special" => $keyID
+	),
 	"guests" => array
 	(
 		"fields" => array

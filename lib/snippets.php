@@ -322,17 +322,17 @@ function formatBirthday($b)
 {
 	return format("{0} ({1} old)", cdate("F j, Y", $b), Plural(floor((time() - $b) / 86400 / 365.2425), "year"));
 }
+
+//This query repetition is dumb and probably not required. ugh
+
 function getPowerlevelName($pl) {
-	$powerlevels = array(
-		-1 => __("Banned"),
-		0 => __("Normal"),
-		1 => __("Local mod"),
-		2 => __("Full mod"),
-		3 => __("Admin"),
-		4 => __("Root"),
-		5 => __("System")
-	);
-	return $powerlevels[$pl];
+	$level = Fetch(Query('SELECT name FROM {groups} WHERE id={0}', $pl));
+    return htmlspecialchars($level['name']);
+}
+
+function makeGroupLink($gid) {
+    $group = Fetch(Query('SELECT name, color_unspec from {groups} WHERE id={0}', $gid));
+    return '<span style="font-weight:bold; color:'.$group['color_unspec'].';">'.htmlspecialchars($group['name']).'</span>';
 }
 
 function getSexName($sex) {
