@@ -57,11 +57,7 @@ echo '<table class="outline margin width50"> <tbody> <tr class="header1"><th>Sta
 
     foreach($permissionList['standard'] as $permname => $text) {
         
-        $checked = '';
-        
-        if(in_array($permname, $permsarray)) {
-            $checked = 'checked="checked"';
-        }
+        $checked = in_array($permname, $permsarray) ? 'checked="checked"' : ''; 
         
         echo'
             <tr colspan="2" class="cell1">
@@ -76,11 +72,7 @@ echo '<table class="outline margin width50"> <tbody> <tr class="header1"><th>Sta
     
     foreach($permissionList['moderation'] as $permname => $text) {
         
-        $checked = '';
-        
-        if(in_array($permname, $permsarray)) {
-            $checked = 'checked="checked"';
-        }
+        $checked = in_array($permname, $permsarray) ? 'checked="checked"' : ''; 
         
         echo'
             <tr class="cell1">
@@ -95,11 +87,7 @@ echo '<table class="outline margin width50"> <tbody> <tr class="header1"><th>Sta
     
     foreach($permissionList['administration'] as $permname => $text) {
         
-        $checked = '';
-        
-        if(in_array($permname, $permsarray)) {
-            $checked = 'checked="checked"';
-        }
+        $checked = in_array($permname, $permsarray) ? 'checked="checked"' : ''; 
         
         echo'
             <tr class="cell1">
