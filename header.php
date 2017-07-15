@@ -17,10 +17,10 @@
 	</script>
 
 	<?php
-		if(file_exists('layouts/$layout/style.css'))
-			echo '<link rel="stylesheet" href="'.resourceLink('layouts/$layout/style.css').'" type="text/css" />';
-		if(file_exists('layouts/$layout/script.js'))
-			echo '<script type="text/javascript" src="'.resourceLink('layouts/$layout/script.js').'"></script>';
+		if(file_exists('layouts/'.$layout.'/style.css'))
+			echo '<link rel="stylesheet" href="'.resourceLink('layouts/'.$layout.'/style.css').'" type="text/css" />';
+		if(file_exists('layouts/'.$layout.'/script.js'))
+			echo '<script type="text/javascript" src="'.resourceLink('layouts/'.$layout.'/script.js').'"></script>';
 	?>
 	<link rel="stylesheet" type="text/css" id="theme_css" href="<?php print resourceLink($layout_themefile); ?>" />
 
