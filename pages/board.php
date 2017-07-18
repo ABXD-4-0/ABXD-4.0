@@ -74,7 +74,7 @@ function announcement() {
 			$annc['poll'] = ($annc['poll'] ? "<img src=\"".resourceLink('img/poll.png')."\" alt=\"Poll\"/> " : '');
 			$posterlink = UserLink($poster);
 			$annc['link'] = MakeThreadLink($annc);
-			$annc['date'] = formatdate($annc['anncdate']);
+			$annc['date'] = formatdate($annc['date']);
 		}
     ?>
     <table class="outline margin anncbar">
