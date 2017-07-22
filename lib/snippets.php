@@ -332,7 +332,7 @@ function getPowerlevelName($pl) {
 
 function makeGroupLink($gid) {
     $group = Fetch(Query('SELECT title, id from {groups} WHERE id={0}', $gid));
-    return '<span style="font-weight:bold;" class="nc2'.$group['id'].'">'.htmlspecialchars($group['title']).'</span>';
+    return '<b class="nc2'.$group['id'].'">'.htmlspecialchars($group['title']).'</b>';
 }
 
 function getSexName($sex) {
