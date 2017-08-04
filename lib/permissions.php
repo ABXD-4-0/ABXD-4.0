@@ -26,27 +26,29 @@ function AssertForbidden($to, $specifically = 0)
 {
 	global $loguser, $forbidden, $perms;
 	
-	$group_permissions = Fetch(Query('SELECT permissions FROM {groups} WHERE id={0}', $loguser['powerlevel']));
+	$group = Fetch(Query('SELECT permissions FROM {groups} WHERE id={0}', $loguser['powerlevel']));
 	if(!isset($perms))
-		$perms = explode(' ', $group_permissions['permissions']);
-	//print_r($perms);
+		$perms = $group['permissions'];
 	if(!isset($forbidden))
-		$forbidden = explode(" ", $loguser['forbiddens']);
+		$forbidden = $loguser['forbiddens'];
+    
 	$caught = 0;
-	if(in_array($to, $forbidden) || !in_array($to, $perms))
-		$caught = 1;
-	else
+    
+    $caught = stripos($perms, $to) ? 0 : 1;
+    $caught = stripos($forbidden, $to) ? 1 : 0;
+    
+	if($specifically > 0)
 	{
 		$specific = $to."[".$specifically."]";
-		if(in_array($specific, $forbidden))
-			$caught = 2;
+		$caught = strpos($perms, $specific) ? 0 : 2;
+        $caught = strpos($forbidden, $specific) ? 2 : 0;
 	}
 
 	if($caught)
 	{
-		$not = __("Non sei autorizzato ad eseguire questa azione");
+		$not = __("You are not allowed to perform this action");
 		$bucket = "forbiddens"; include("./lib/pluginloader.php");
-		Kill(format($not), __("Accesso negato"));
+		Kill(format($not), __("Access denied"));
 	}
 }
 
@@ -56,18 +58,19 @@ function IsAllowed($to, $specifically = 0)
 	
 	$group = Fetch(Query('SELECT permissions FROM {groups} WHERE id={0}', $loguser['powerlevel']));
 	if(!isset($perms))
-		$perms = explode(' ', $group['permissions']);
+    	$perms = $group['permissions'];
 	if(!isset($forbidden))
-		$forbidden = explode(" ", $loguser['forbiddens']);
-
-	if(in_array($to, $forbidden) || !in_array($to, $perms)) {
-		return FALSE;
-		}
-	else
-	{
+		$forbidden = $loguser['forbiddens'];
+    
+    $candoit = FALSE;
+    $candoit = stripos($perms, $to) ? TRUE : FALSE;
+    $candoit = stripos($forbidden, $to) ? FALSE : TRUE;
+    
+    if($specifically > 0) {
 		$specific = $to."[".$specifically."]";
-		if(in_array($specific, $forbidden))
-			return FALSE;
-	}
-	return TRUE;
+		$candoit = stripos($perms, $specific) ? TRUE : FALSE;
+        $candoit = stripos($forbidden, $to) ? FALSE : TRUE;
+    }
+
+	return $candoit;
 }
