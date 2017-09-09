@@ -96,7 +96,9 @@ function announcement() {
 }
 
 printRefreshCode();
+if (Settings::Get['announcementsMode'] == 1) {
 announcement();
+}
 makeForumListing(0);
 
 ?>
