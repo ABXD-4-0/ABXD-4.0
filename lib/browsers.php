@@ -11,6 +11,7 @@ $lastKnownBrowser = "Something";
 $knownBrowsers = array
 (
 	"IE" => "Internet Explorer",
+	"Edge" => "Microsoft Edge",
 	"rekonq" => "rekonq",
 	"OPR" => "Opera",
 	"Otter" => "Otter",
@@ -23,6 +24,8 @@ $knownBrowsers = array
 	"Opera" => "Opera",
 	"Iceweasel" => "Iceweasel",
 	"MozillaDeveloperPreview" => "Firefox (Development build)",
+	"SeaMonkey" => "SeaMonkey",
+	"PaleMoon" => "Pale Moon",
 	"Firefox" => "Firefox",
 	"dwb" => "DWB",
 	"Chrome" => "Chrome",
@@ -56,6 +59,8 @@ $knownOSes = array
 	"Windows NT 6.0" => "Windows Vista",
 	"Windows NT 6.1" => "Windows 7",
 	"Windows NT 6.2" => "Windows 8",
+	"Windows NT 6.3" => "Windows 8.1",
+	"Windows NT 10.0" => "Windows 10",
 	"Windows Mobile" => "Windows Mobile",
 	"FreeBSD" => "FreeBSD",
 	"Ubuntu" => "Ubuntu",
@@ -67,7 +72,7 @@ $knownOSes = array
 	"Firefox" => "Firefox OS",
 );
 
-$mobileBrowsers = array('Opera Tablet', 'Opera Mobile', 'Opera Mini', 'Nintendo DSi', 'Nitro', 'Nintendo 3DS', 'Android', 'Nokia', 'iPod', 'iPad', 'iPhone', 'Firefox OS');
+$mobileBrowsers = array('Opera Tablet', 'Opera Mobile', 'Opera Mini', 'Nitro', 'Android', 'Nokia', 'iPod', 'iPad', 'iPhone', 'Firefox OS');
 $mobileLayout = false;
 
 $ua = $_SERVER['HTTP_USER_AGENT'];

@@ -159,9 +159,14 @@ printf(\"Hello World!
 		"default" => "1",
 		"name" => "Forum for deleted threads",
 	),
+	"announcementsMode" => array (
+		"type" => "boolean",
+		"default" => "0",
+		"name" => "Announcements bar",
+	),
 	"announcementsForum" => array (
 		"type" => "forum",
-		"default" => "0",
+		"default" => "2",
 		"name" => "Forum for announcements",
 	),
 );
