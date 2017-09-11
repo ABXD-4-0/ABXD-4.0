@@ -56,7 +56,7 @@ if(!$mobileLayout)
 
 function announcement() {
     global $loguserid;
-	
+	if(!Settings::get('announcementsMode')) return;
 	$anncforum = Settings::get('announcementsForum');
 	if ($anncforum > 0) {
 		$annc = Fetch(Query('SELECT * FROM {threads} where forum={0} ORDER BY date DESC LIMIT 1 ', $anncforum));
@@ -96,9 +96,9 @@ function announcement() {
 }
 
 printRefreshCode();
-if (Settings::Get['announcementsMode'] == 1) {
+
 announcement();
-}
+
 makeForumListing(0);
 
 ?>
