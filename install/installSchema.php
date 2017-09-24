@@ -95,7 +95,7 @@ $tables = array
 		"special" => $keyID.", key `catid` (`catid`)"
 	),
 	"groups" => array
-    (
+    	(
 		"fields" => array
 		(
 			"id" => $AI,
@@ -106,7 +106,7 @@ $tables = array
 			"default" => $smallerInt,
 			"permissions" => $text
 		),
-		"special" => $keyID
+		"special" => $keyID,
 	),
 	"guests" => array
 	(
