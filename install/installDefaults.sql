@@ -10,7 +10,6 @@ INSERT INTO `{$dbpref}forums` (`id`, `title`, `description`, `catid`, `minpower`
 INSERT INTO `{$dbpref}settings` (`plugin`, `name`, `value`) VALUES('main', 'trashForum', 3);
 INSERT INTO `{$dbpref}settings` (`plugin`, `name`, `value`) VALUES('main', 'hiddenTrashForum', 4);
 
---TODO: add system group
 
 INSERT INTO `{$dbpref}groups` (`id`, `name`, `color_male`, `color_female`, `color_unspec`, `default`, `permissions`) VALUES
 (4, 'Root',  '#5555FF', '#FF5588', '#FF55FF', 0, 'addranks admin deletecomments editcats editfora ipbans editmods editavatars editpora editpost editprofile editsettings editsmilies editthread edituser forum haveCookie usercomments newreply newthread optimize pluginmanager recalc sendprivate snooping upload admin avatars lastknownbrowsers online ranks records thread userbadges vote '),
