@@ -331,7 +331,7 @@ function getPowerlevelName($pl) {
 }
 
 function makeGroupLink($gid) {
-    $group = Fetch(Query('SELECT title, id from {groups} WHERE id={0}', $gid));
+    $group = Fetch(Query('SELECT name, id from {groups} WHERE id={0}', $gid));
     $idbit = $group['id'] >= 0 ? $group['id'] : 'x';
     return '<b class="nc2'.$idbit.'">'.htmlspecialchars($group['title']).'</b>';
 }
